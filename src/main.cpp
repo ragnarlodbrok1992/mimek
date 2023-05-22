@@ -1,9 +1,11 @@
-#include "include/mimek.hpp"
+#include "mimek/mimek.hpp"
+
+#include <iostream>
 
 int main(int argc, char* argv[]) {
-  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-      "Mimek engine.",
-      "Hello, sailor!", NULL);
+  init_mim();
+
+  run_mim();
 
   return 0;
 }
