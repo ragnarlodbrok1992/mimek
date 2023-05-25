@@ -24,5 +24,8 @@ int main(int argc, char* argv[]) {
 
   clean_mim(window, renderer);
 
+  // DEBUG
+  test_mim();
+
   return 0;
 }

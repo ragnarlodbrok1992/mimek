@@ -75,3 +75,6 @@ void clean_mim(SDL_Window* engine_window, SDL_Renderer* engine_renderer) {
 
 }
 
+void test_mim() {
+  NOT_IMPLEMENTED();
+}
