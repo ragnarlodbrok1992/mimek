@@ -1,3 +1,5 @@
+#define FUNCTION_OR_FEATURE_NOT_IMPLEMENTED false
+
 #define TITLE_BAR "Mimek engine"
 
 #define SCREEN_WIDTH 1024

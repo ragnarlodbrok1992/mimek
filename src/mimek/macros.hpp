@@ -1,6 +1,9 @@
 // MACROS for not implemented assertion
 
+#include "const.hpp"
+
 #include <stdio.h>
+#include <cassert>
 
 #if defined(__GNUC__) || (__clang__)
   #define TRAP() __builtin_trap()
@@ -12,9 +15,6 @@
 
 #define NOT_IMPLEMENTED() \
   do { \
-    printf("Error: Function or feature not implemented!\n"); \
-    printf("File: %s\n", __FILE__); \
-    printf("Line: %d\n", __LINE__); \
-    TRAP(); \
+    assert(FUNCTION_OR_FEATURE_NOT_IMPLEMENTED); \
   } while (0)
 
