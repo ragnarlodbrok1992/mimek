@@ -1,6 +1,9 @@
 #include "mimek.hpp"
 
-int init_mim(SDL_Window* engine_window, SDL_Renderer* engine_renderer) {
+static Mouse_Pointer mouse_pointer;
+static Button_Vec button_vec;
+
+int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Initialization.\n");
 
   // Initialize SDL
@@ -32,10 +35,14 @@ int init_mim(SDL_Window* engine_window, SDL_Renderer* engine_renderer) {
     return 1;
   }
 
+  // Render code goes here
+  // printf("Window:   %p\n", engine_window);
+  // printf("Renderer: %p\n", engine_renderer);
+
   return 0;
 }
 
-void run_mim(SDL_Renderer* engine_renderer, bool& running) {
+void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
   printf("Running.\n");
   printf("Engine running var: %s\n", running ? "true" : "false");
 
@@ -48,8 +55,18 @@ void run_mim(SDL_Renderer* engine_renderer, bool& running) {
       if (event.type == SDL_QUIT) {
         running = false;
       }
+
+      // Handling mouse
+      if (event.type == SDL_MOUSEBUTTONDOWN) {
+        mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
+
+#ifdef DEBUG_CODE_INPUT
+        print_mouse_state(mouse_pointer);
+#endif
+
+      }
       
-      // Keybaord presses
+      // Keyboard presses
       if (event.type == SDL_KEYDOWN) {
         if (event.key.keysym.sym == SDLK_ESCAPE) {
           running = false;
@@ -61,12 +78,16 @@ void run_mim(SDL_Renderer* engine_renderer, bool& running) {
     SDL_SetRenderDrawColor(engine_renderer, 0, 0, 0, 255);
     SDL_RenderClear(engine_renderer);
 
+    // Render code goes here
+    // printf("Renderer: %p\n", engine_renderer);
+    render(engine_renderer);
+
     // Update the screen
     SDL_RenderPresent(engine_renderer);
   }
 }
 
-void clean_mim(SDL_Window* engine_window, SDL_Renderer* engine_renderer) {
+void clean_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Cleaning.\n");
 
   SDL_DestroyRenderer(engine_renderer);
@@ -75,6 +96,30 @@ void clean_mim(SDL_Window* engine_window, SDL_Renderer* engine_renderer) {
 
 }
 
+inline void setrendercolor_mim(SDL_Renderer*& engine_renderer, SDL_Color& color) {
+  SDL_SetRenderDrawColor(engine_renderer, color.r, color.g, color.b, color.a);
+}
+
+inline void render(SDL_Renderer*& engine_renderer) {
+  // Render function
+  // General and test purposes
+  //
+  // @26-05-23 Working on button
+
+  // SDL_Color RED = {255, 0, 0, 255};
+  // Button button = create_button_mim({100, 100, 200, 100});
+  
+  // setrendercolor_mim(engine_renderer, RED);
+  // SDL_RenderFillRect(engine_renderer, &button.rect);
+  
+}
+
+inline void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
+  // Render function for UI elements - buttons
+
+}
+
 void test_mim() {
   NOT_IMPLEMENTED();
 }
+
