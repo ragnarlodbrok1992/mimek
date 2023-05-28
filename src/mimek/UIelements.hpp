@@ -1,22 +1,12 @@
+#ifndef _H_UIELEMENTS
+#define _H_UIELEMENTS
+
 #include <SDL.h>
-#include <vector>
+#include "Types.hpp"
+#include "Render.hpp"
 
-enum STATUS {
-  UnFocused,
-  Focused,
-  Clicked
-};
-
-typedef struct Button {
-  SDL_Rect rect;
-  SDL_Color color;
-
-  STATUS status;
-
-} Button;
-
-typedef std::vector<Button> Button_Vec;
-
-Button create_button_mim(SDL_Rect rect);
+Button create_button_mim(SDL_Rect rect, SDL_Color color);
 void inline render_button_mim(SDL_Renderer*& engine_renderer, Button& bt);
+
+#endif /* _H_UIELEMENTS */
 

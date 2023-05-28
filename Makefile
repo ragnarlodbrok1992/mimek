@@ -11,10 +11,11 @@ mimek.exe: src/main.cpp
 			/I$(SDL2INC) \
 			/I$(MIMEKINC)	\
 			/Femimek.exe \
-			src/main.cpp \
-			src/mimek/mimek.cpp	\
-			src/mimek/UIelements.cpp \
+			src/mimek/Render.cpp \
 			src/mimek/Input.cpp \
+			src/mimek/UIelements.cpp \
+			src/mimek/mimek.cpp	\
+			src/main.cpp \
 			shell32.lib	\
 			User32.lib	\
 			/link	\

@@ -48,6 +48,10 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
   SDL_Event event;
 
+
+  // Initialize elements
+  init_ui_elements_buttons_mim(button_vec);
+
   while(running) {
     // Handling events
     while (SDL_PollEvent(&event)) {
@@ -80,6 +84,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
     // Render code goes here
     // printf("Renderer: %p\n", engine_renderer);
+    // FIXME: linking problem :(
     render(engine_renderer);
 
     // Update the screen
@@ -96,28 +101,14 @@ void clean_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
 
 }
 
-inline void setrendercolor_mim(SDL_Renderer*& engine_renderer, SDL_Color& color) {
-  SDL_SetRenderDrawColor(engine_renderer, color.r, color.g, color.b, color.a);
+void init_ui_elements_buttons_mim(Button_Vec& bv) {
+  // Some debug initializations
+
+  SDL_Rect temp = {100, 100, 200, 120};
+  SDL_Color temp_color = {255, 0, 0, 255};
+  bv.push_back(create_button_mim(temp, temp_color));
 }
 
-inline void render(SDL_Renderer*& engine_renderer) {
-  // Render function
-  // General and test purposes
-  //
-  // @26-05-23 Working on button
-
-  // SDL_Color RED = {255, 0, 0, 255};
-  // Button button = create_button_mim({100, 100, 200, 100});
-  
-  // setrendercolor_mim(engine_renderer, RED);
-  // SDL_RenderFillRect(engine_renderer, &button.rect);
-  
-}
-
-inline void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
-  // Render function for UI elements - buttons
-
-}
 
 void test_mim() {
   NOT_IMPLEMENTED();

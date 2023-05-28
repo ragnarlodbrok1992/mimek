@@ -8,3 +8,7 @@ Button create_button_mim(SDL_Rect rect, SDL_Color color) {
 
   return temp_button;
 }
+
+void inline render_button_mim(SDL_Renderer* engine_renderer, Button& bt) {
+  set_rendercolor_mim(engine_renderer, bt.color);
+}

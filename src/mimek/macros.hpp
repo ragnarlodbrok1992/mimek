@@ -1,3 +1,6 @@
+#ifndef _H_MACROS
+#define _H_MACROS
+
 // MACROS for not implemented assertion
 
 #include "const.hpp"
@@ -17,4 +20,6 @@
   do { \
     assert(FUNCTION_OR_FEATURE_NOT_IMPLEMENTED); \
   } while (0)
+
+#endif /* _H_MACROS */
 
