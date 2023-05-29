@@ -83,8 +83,6 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     SDL_RenderClear(engine_renderer);
 
     // Render code goes here
-    // printf("Renderer: %p\n", engine_renderer);
-    // FIXME: linking problem :(
     render(engine_renderer);
 
     // Update the screen

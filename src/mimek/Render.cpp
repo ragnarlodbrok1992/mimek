@@ -1,10 +1,10 @@
 #include "Render.hpp"
 
-inline void set_rendercolor_mim(SDL_Renderer*& engine_renderer, SDL_Color& color) {
+void set_rendercolor_mim(SDL_Renderer*& engine_renderer, SDL_Color& color) {
   SDL_SetRenderDrawColor(engine_renderer, color.r, color.g, color.b, color.a);
 }
 
-inline void render(SDL_Renderer*& engine_renderer) {
+void render(SDL_Renderer*& engine_renderer) {
   // Render function
   // General and test purposes
   //
@@ -18,6 +18,6 @@ inline void render(SDL_Renderer*& engine_renderer) {
   
 }
 
-inline void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
+void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
   // Render function for UI elements - buttons
 }
