@@ -34,11 +34,6 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
     printf("Failed to create SDL renderer: %s\n", SDL_GetError());
     return 1;
   }
-
-  // Render code goes here
-  // printf("Window:   %p\n", engine_window);
-  // printf("Renderer: %p\n", engine_renderer);
-
   return 0;
 }
 
@@ -83,7 +78,8 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     SDL_RenderClear(engine_renderer);
 
     // Render code goes here
-    render(engine_renderer);
+    // render(engine_renderer);
+    render_ui_buttons(engine_renderer, button_vec);
 
     // Update the screen
     SDL_RenderPresent(engine_renderer);
@@ -99,13 +95,6 @@ void clean_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
 
 }
 
-void init_ui_elements_buttons_mim(Button_Vec& bv) {
-  // Some debug initializations
-
-  SDL_Rect temp = {100, 100, 200, 120};
-  SDL_Color temp_color = {255, 0, 0, 255};
-  bv.push_back(create_button_mim(temp, temp_color));
-}
 
 
 void test_mim() {

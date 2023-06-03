@@ -17,8 +17,6 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer);
 void run_mim(SDL_Renderer*& engine_renderer, bool& running);
 void clean_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer);
 
-void init_ui_elements_buttons_mim(Button_Vec& bv);
-
 void test_mim();
 
 #endif /* _H_MIMEK */

@@ -8,5 +8,9 @@
 Button create_button_mim(SDL_Rect rect, SDL_Color color);
 void inline render_button_mim(SDL_Renderer*& engine_renderer, Button& bt);
 
+void init_ui_elements_buttons_mim(Button_Vec& bv);
+
+Button* select_button(Button_Vec& bv, int x, int y);
+
 #endif /* _H_UIELEMENTS */
 
