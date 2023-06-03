@@ -33,7 +33,7 @@ void init_ui_elements_buttons_mim(Button_Vec& bv) {
 }
 
 Button* select_button(Button_Vec& bv, int x, int y) {
-  for (auto b : bv) {
+  for (auto& b : bv) {
     printf("b is: 0x%p\n", &b);
 
     if (((x > b.rect.x) && (x < b.rect.x + b.rect.w)) &&
