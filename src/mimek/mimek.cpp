@@ -63,6 +63,13 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
         print_mouse_state(mouse_pointer);
 #endif
 
+        // Selecting madafakin buttons
+        Button* selected_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
+        printf("Selected button: 0x%p\n", selected_button);
+
+        // DEBUG - changing color of button
+        if (selected_button != NULL) button_set_color(*selected_button, {0, 255, 127, 255});
+
       }
       
       // Keyboard presses

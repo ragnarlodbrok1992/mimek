@@ -11,6 +11,11 @@ Button create_button_mim(SDL_Rect rect, SDL_Color color) {
   return temp_button;
 }
 
+void button_set_color(Button& button, SDL_Color color) {
+  printf("Setting button color!\n");
+  button.color = color;
+}
+
 void inline render_button_mim(SDL_Renderer* engine_renderer, Button& bt) {
   set_rendercolor_mim(engine_renderer, bt.color);
 }
@@ -28,11 +33,15 @@ void init_ui_elements_buttons_mim(Button_Vec& bv) {
 }
 
 Button* select_button(Button_Vec& bv, int x, int y) {
-  Button* temp = NULL;
-
   for (auto b : bv) {
-    if (((x > b.rect.x) && (x < b.rect.x + b.rect.w)) && (() && ())) 
+    printf("b is: 0x%p\n", &b);
+
+    if (((x > b.rect.x) && (x < b.rect.x + b.rect.w)) &&
+        ((y > b.rect.y) && (y < b.rect.y + b.rect.h))) {
+      printf("FOUND MADAFAKIN BUTTON!\n");
+      return &b;
+    }
   }
-  return temp;
+  return NULL;
 }
 
