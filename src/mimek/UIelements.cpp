@@ -2,10 +2,17 @@
 
 #include "Types.hpp"
 
+size_t BUTTON_ID = 0;
+
 Button create_button_mim(SDL_Rect rect, SDL_Color color) {
   Button temp_button;
+
+  temp_button.id = BUTTON_ID;
+  BUTTON_ID++;
+
   temp_button.rect = rect;
-  temp_button.color = color;
+  temp_button.main_color = color;
+
   temp_button.status = STATUS::UnFocused;
 
   return temp_button;
@@ -13,11 +20,11 @@ Button create_button_mim(SDL_Rect rect, SDL_Color color) {
 
 void button_set_color(Button& button, SDL_Color color) {
   printf("Setting button color!\n");
-  button.color = color;
+  button.main_color = color;
 }
 
 void inline render_button_mim(SDL_Renderer* engine_renderer, Button& bt) {
-  set_rendercolor_mim(engine_renderer, bt.color);
+  set_rendercolor_mim(engine_renderer, bt.main_color);
 }
 
 void init_ui_elements_buttons_mim(Button_Vec& bv) {

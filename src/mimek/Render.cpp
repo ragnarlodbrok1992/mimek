@@ -16,7 +16,7 @@ void render(SDL_Renderer*& engine_renderer) {
   // SDL_Color RED = {255, 0, 0, 255};
   Button button = create_button_mim({100, 100, 200, 100}, {255, 0, 0, 255});
   
-  set_rendercolor_mim(engine_renderer, button.color);
+  set_rendercolor_mim(engine_renderer, button.main_color);
   SDL_RenderFillRect(engine_renderer, &button.rect);
   
 }
@@ -31,6 +31,6 @@ void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
 void render_button(SDL_Renderer*& engine_renderer, Button& button) {
   // printf("Rendering button 0x%x\n", button);
 
-  set_rendercolor_mim(engine_renderer, button.color);
+  set_rendercolor_mim(engine_renderer, button.main_color);
   SDL_RenderFillRect(engine_renderer, &button.rect);
 }
