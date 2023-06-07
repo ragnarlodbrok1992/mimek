@@ -14,6 +14,7 @@ mimek.exe: src/main.cpp
 			src/mimek/Render.cpp \
 			src/mimek/Input.cpp \
 			src/mimek/UIelements.cpp \
+			src/mimek/Utils.cpp \
 			src/mimek/mimek.cpp	\
 			src/main.cpp \
 			shell32.lib	\

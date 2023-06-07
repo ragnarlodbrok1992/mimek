@@ -28,9 +28,12 @@ void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
   }
 }
 
+// UI Element: Button
 void render_button(SDL_Renderer*& engine_renderer, Button& button) {
-  // printf("Rendering button 0x%x\n", button);
-
   set_rendercolor_mim(engine_renderer, button.main_color);
   SDL_RenderFillRect(engine_renderer, &button.rect);
+
+  // Changing here @TODO - rendering full default_button from assets using code
+  set_rendercolor_mim(engine_renderer, WHITE);
+  // Getting points out of SDL_Rect
 }

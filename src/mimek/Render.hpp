@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include "Types.hpp"
+#include "Color.hpp"
 
 void set_rendercolor_mim(SDL_Renderer*& engine_renderer, SDL_Color& color);
 
