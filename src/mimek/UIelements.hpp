@@ -7,7 +7,6 @@
 
 Button create_button_mim(SDL_Rect rect, SDL_Color color);
 void button_set_color(Button& button, SDL_Color color);
-void inline render_button_mim(SDL_Renderer*& engine_renderer, Button& bt);
 
 void init_ui_elements_buttons_mim(Button_Vec& bv);
 

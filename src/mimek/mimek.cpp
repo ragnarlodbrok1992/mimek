@@ -85,7 +85,6 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     SDL_RenderClear(engine_renderer);
 
     // Render code goes here
-    // render(engine_renderer);
     render_ui_buttons(engine_renderer, button_vec);
 
     // Update the screen
