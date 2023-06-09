@@ -3,6 +3,9 @@
 
 #include <SDL.h>
 
+// Float helper functions
+void utils_mim_clamp_float(float& value);
+
 // Return fixed array of 5 SDL_Points out of rectangle
 void utils_mim_get_points_from_rect(SDL_Point (&points)[5], const SDL_Rect& rect);
 void utils_mim_get_points_to_inner_button(SDL_Point (&points_outer)[5], SDL_Point (&points_inner)[5]);

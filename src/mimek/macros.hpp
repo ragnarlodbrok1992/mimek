@@ -1,12 +1,17 @@
 #ifndef _H_MACROS
 #define _H_MACROS
 
-// MACROS for not implemented assertion
-
 #include "const.hpp"
 
 #include <stdio.h>
 #include <cassert>
+
+
+// MACRO for compile time assertion
+#define COMPILETIME_NOT_IMPLEMENTED static_assert(false, "COMPILETIME CHECK: Not implemented!");
+
+
+// MACROS for not implemented assertion
 
 #if defined(__GNUC__) || (__clang__)
   #define TRAP() __builtin_trap()
