@@ -1,6 +1,7 @@
 #include "mimek.hpp"
 
 #include "Utils.hpp"
+#include "Types.hpp"
 
 static Mouse_Pointer mouse_pointer;
 static Button_Vec button_vec;
@@ -48,28 +49,22 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
   // Initialize elements
   init_ui_elements_buttons_mim(button_vec);
 
-  // DEBUG checks
-  float a, b, c;
-  a = 100.0;
-  b = -123.0;
-  c = 0.0;
+  // @TODO: Render fill polygon scanline algorithm
+  // DEBUG - test ymin, ymax, xmin, xmax
+  Point2D_Vec test_points_vec;
+  test_points_vec.push_back({10, 10});
+  test_points_vec.push_back({2, 10});
+  test_points_vec.push_back({10, 20});
+  test_points_vec.push_back({20, 35});
 
-  printf("Min: %f\n", utils_mim_min_3_floats(a, b, c));
-  printf("Max: %f\n", utils_mim_max_3_floats(a, b, c));
-
-  uint8_t red, green, blue;
-  int h;
-  float s, l;
-
-  red = 82;
-  green = 0;
-  blue = 87;
-
-  color_mim_rgb_to_hsl(red, green, blue, h, s, l);
-
-  printf("Hue: %d\n", h);
-  printf("Saturation: %f\n", s);
-  printf("Lightness: %f\n", l);
+  int x_min, x_max, y_min, y_max;
+  utils_mim_yminmax_xminmax_from_points2d_vec(test_points_vec, y_min, y_max, x_min, x_max);
+  
+  // DEBUG print
+  printf("Y min: %d\n", y_min);
+  printf("Y max: %d\n", y_max);
+  printf("X min: %d\n", x_min);
+  printf("X max: %d\n", x_max);
 
   while(running) {
     // Handling events
@@ -110,6 +105,9 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
     // Render code goes here
     render_ui_buttons(engine_renderer, button_vec);
+
+    // Test rendering
+    mim_render(engine_renderer);
 
     // Update the screen
     SDL_RenderPresent(engine_renderer);

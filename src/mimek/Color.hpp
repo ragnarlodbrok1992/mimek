@@ -22,6 +22,9 @@ constexpr SDL_Color DEFAULT_BUTTON_PURPLE = {163, 73, 164, 255};
 
 void color_mim_change_lightness(SDL_Color& main_color, SDL_Color& light_color, float brightness);
 void color_mim_rgb_to_hsl(uint8_t& r, uint8_t& g, uint8_t& b, int& h, float& s, float& l);
+void color_mim_hsl_to_rgb(int& h, float& s, float& l, uint8_t& r, uint8_t& g, uint8_t& b);
+
+float color_mim_hue_to_rgb(float v1, float v2, float vH);
 
 #endif /* _H_COLOR */
 

@@ -90,6 +90,20 @@ void utils_mim_get_points_to_inner_button(SDL_Point (&points_outer)[5], SDL_Poin
   points_inner[4].y = points_outer[4].y + OUTBAR_SIZE_BUTTON;
 }
 
+void utils_mim_yminmax_xminmax_from_points2d_vec(Point2D_Vec vec, int& y_min, int& y_max, int& x_min, int& x_max) {
+  y_min = INT_MAX;
+  y_max = INT_MIN;
+  x_min = INT_MAX;
+  x_max = INT_MIN;
+
+  for (auto point : vec) {
+    if (x_min > point.x) x_min = point.x;
+    if (x_max < point.x) x_max = point.x;
+    if (y_min > point.y) y_min = point.y;
+    if (y_max < point.y) y_max = point.y;
+  }
+}
+
 void print_points(SDL_Point (&points)[5]) {
   printf("0 -> x: %d y: %d\n", points[0].x, points[0].y);
   printf("1 -> x: %d y: %d\n", points[1].x, points[1].y);
@@ -97,3 +111,11 @@ void print_points(SDL_Point (&points)[5]) {
   printf("3 -> x: %d y: %d\n", points[3].x, points[3].y);
   printf("4 -> x: %d y: %d\n", points[4].x, points[4].y);
 }
+
+void print_color(SDL_Color color) {
+  printf("Red  : %d\n", color.r);
+  printf("Green: %d\n", color.g);
+  printf("Blue : %d\n", color.b);
+}
+
+

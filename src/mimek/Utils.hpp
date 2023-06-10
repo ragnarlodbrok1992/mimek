@@ -2,6 +2,7 @@
 #define _H_UTILS
 
 #include <SDL.h>
+#include "Types.hpp"
 
 // Float helper functions
 void utils_mim_clamp_float(float& value);
@@ -14,7 +15,11 @@ int utils_mim_max_3_ints(int a, int b, int c);
 // Return fixed array of 5 SDL_Points out of rectangle
 void utils_mim_get_points_from_rect(SDL_Point (&points)[5], const SDL_Rect& rect);
 void utils_mim_get_points_to_inner_button(SDL_Point (&points_outer)[5], SDL_Point (&points_inner)[5]);
+void utils_mim_yminmax_xminmax_from_points2d_vec(Point2D_Vec vec, int& y_min, int& y_max, int& x_min, int& x_max);
+
+// Print functions
 void print_points(SDL_Point (&points)[5]);
+void print_color(SDL_Color color);
 
 #endif /* _H_UTILS */
 
