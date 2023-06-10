@@ -32,6 +32,17 @@ void mim_render(SDL_Renderer*& engine_renderer) {
 }
 
 void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec points_vec) {
+  int x_min, x_max, y_min, y_max;
+  utils_mim_yminmax_xminmax_from_points2d_vec(points_vec, y_min, y_max, x_min, x_max);
+
+#if 0
+  printf("Y min: %d\n", y_min);
+  printf("Y max: %d\n", y_max);
+  printf("X min: %d\n", x_min);
+  printf("X max: %d\n", x_max);
+#endif
+
+  // @TODO big task: Implement scanline fill algorithm
 
 }
 
@@ -46,6 +57,7 @@ void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
 void render_button(SDL_Renderer*& engine_renderer, Button& button) {
   SDL_Point outer_points[5];
   SDL_Point inner_points[5];
+  Point2D_Vec lighter_area_vec;
 
   utils_mim_get_points_from_rect(outer_points, button.rect);
   utils_mim_get_points_to_inner_button(outer_points, inner_points);
@@ -53,6 +65,17 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
   set_rendercolor_mim(engine_renderer, button.main_color);
   SDL_RenderFillRect(engine_renderer, &button.rect);
 
+  // Pushing points to create a vector for lighter area
+  lighter_area_vec.push_back(utils_mim_sdl_point_to_point_2d(outer_points[0]));
+  lighter_area_vec.push_back(utils_mim_sdl_point_to_point_2d(inner_points[0]));
+  lighter_area_vec.push_back(utils_mim_sdl_point_to_point_2d(inner_points[3]));
+  lighter_area_vec.push_back(utils_mim_sdl_point_to_point_2d(inner_points[2]));
+  lighter_area_vec.push_back(utils_mim_sdl_point_to_point_2d(outer_points[2]));
+  lighter_area_vec.push_back(utils_mim_sdl_point_to_point_2d(outer_points[3]));
+
+  // Rendering filled polygon with lighter color
+  set_rendercolor_mim(engine_renderer, button.light_color);
+  mim_render_filled_polygon(engine_renderer, lighter_area_vec);
 
   // Changing here @TODO - rendering full default_button from assets using code
   set_rendercolor_mim(engine_renderer, button.outline);

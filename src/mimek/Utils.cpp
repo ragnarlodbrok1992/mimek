@@ -104,6 +104,13 @@ void utils_mim_yminmax_xminmax_from_points2d_vec(Point2D_Vec vec, int& y_min, in
   }
 }
 
+Point2D utils_mim_sdl_point_to_point_2d(SDL_Point pt) {
+  Point2D temp;
+  temp.x = pt.x;
+  temp.y = pt.y;
+  return temp;
+}
+
 void print_points(SDL_Point (&points)[5]) {
   printf("0 -> x: %d y: %d\n", points[0].x, points[0].y);
   printf("1 -> x: %d y: %d\n", points[1].x, points[1].y);

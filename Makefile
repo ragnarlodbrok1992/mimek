@@ -2,7 +2,7 @@ SDL2INC=include/
 SDL2LIB=lib/x64/
 MIMEKINC=src/mimek/
 
-mimek.exe: src/main.cpp
+mimek: src/main.cpp
 	@cp lib\x64\SDL2.dll .
 	@cl	/W4 /sdl /nologo 	\
 			/std:c++20 \
@@ -26,4 +26,20 @@ mimek.exe: src/main.cpp
 				
 clean:
 	@del *.obj *.exe *.ilk *.pdb *.dll *~
+
+scanlinefillalgorithm: test/ScanlineFillAlgorithm.cpp
+	@cp lib\x64\SDL2.dll .
+	@cl /W4 /sdl /nologo \
+		/std:c++20 \
+		/Zi \
+		/EHsc \
+		/I$(SDL2INC) \
+		/I$(MIMEKINC) \
+		/Fescanlinefillalgorithm.exe \
+		test/ScanlineFillAlgorithm.cpp \
+		shell32.lib \
+		User32.lib \
+		/link \
+		  /LIBPATH:"$(SDL2LIB)" \
+			SDL2.lib SDL2main.lib
 

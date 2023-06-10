@@ -17,6 +17,9 @@ void utils_mim_get_points_from_rect(SDL_Point (&points)[5], const SDL_Rect& rect
 void utils_mim_get_points_to_inner_button(SDL_Point (&points_outer)[5], SDL_Point (&points_inner)[5]);
 void utils_mim_yminmax_xminmax_from_points2d_vec(Point2D_Vec vec, int& y_min, int& y_max, int& x_min, int& x_max);
 
+// Type-casting functions
+Point2D utils_mim_sdl_point_to_point_2d(SDL_Point pt);
+
 // Print functions
 void print_points(SDL_Point (&points)[5]);
 void print_color(SDL_Color color);

@@ -16,10 +16,6 @@ Button create_button_mim(SDL_Rect rect, SDL_Color color) {
   temp_button.main_color = color;
   color_mim_change_lightness(temp_button.main_color, temp_button.light_color, 0.7f);
 
-  // DEBUG
-  print_color(temp_button.main_color);
-  print_color(temp_button.light_color);
-
   temp_button.status = STATUS::UnFocused;
 
   return temp_button;
