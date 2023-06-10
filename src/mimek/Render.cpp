@@ -44,7 +44,6 @@ void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec& poin
   printf("X max: %d\n", x_max);
 #endif
 
-  // @TODO big task: Implement scanline fill algorithm
   std::vector<int> intersection_points(SCREEN_WIDTH);
 
   for (int scanline_y = y_min; scanline_y <= y_max; scanline_y++) {
@@ -88,6 +87,8 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
   SDL_Point inner_points[5];
   Point2D_Vec lighter_area_vec;
 
+  // @TODO: change colors based on STATUS
+
   utils_mim_get_points_from_rect(outer_points, button.rect);
   utils_mim_get_points_to_inner_button(outer_points, inner_points);
 
@@ -106,7 +107,6 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
   set_rendercolor_mim(engine_renderer, button.light_color);
   mim_render_filled_polygon(engine_renderer, lighter_area_vec);
 
-  // Changing here @TODO - rendering full default_button from assets using code
   set_rendercolor_mim(engine_renderer, button.outline);
 
   // Get points out of a rectangle

@@ -62,12 +62,13 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
         mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
 
 #ifdef DEBUG_CODE_INPUT
+#if 0
         print_mouse_state(mouse_pointer);
 #endif
+#endif 
 
         // Selecting madafakin buttons
         Button* selected_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
-        printf("Selected button: 0x%p\n", selected_button);
 
         // DEBUG - changing color of button
         if (selected_button != NULL) button_set_color(*selected_button, {0, 255, 127, 255});
@@ -80,6 +81,13 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
           running = false;
         }
       }
+    }
+
+    // Check mouse hovering @TODO should this be done in every frame? Use QuadTree for checking for UI elements
+    mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
+    Button* selected_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
+    if (NULL != selected_button) {
+
     }
 
     // Clearning the screen

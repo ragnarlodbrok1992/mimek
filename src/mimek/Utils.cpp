@@ -73,7 +73,6 @@ void utils_mim_get_points_to_inner_button(SDL_Point (&points_outer)[5], SDL_Poin
   // |
   // v
   // Y
-  // @TODO: make inner points
   points_inner[0].x = points_outer[0].x + OUTBAR_SIZE_BUTTON; 
   points_inner[0].y = points_outer[0].y + OUTBAR_SIZE_BUTTON;
 
