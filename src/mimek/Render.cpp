@@ -31,7 +31,7 @@ void mim_render(SDL_Renderer*& engine_renderer) {
   SDL_RenderFillRect(engine_renderer, &lighter_rect);
 }
 
-void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec points_vec) {
+void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec& points_vec) {
   int x_min, x_max, y_min, y_max;
   utils_mim_yminmax_xminmax_from_points2d_vec(points_vec, y_min, y_max, x_min, x_max);
 

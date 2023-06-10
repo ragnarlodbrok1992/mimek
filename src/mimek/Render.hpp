@@ -12,7 +12,7 @@ void set_rendercolor_mim(SDL_Renderer*& engine_renderer, const SDL_Color& color)
 void mim_render(SDL_Renderer*& engine_renderer);
 
 // Function to render primitives
-void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec points_vec);
+void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec& points_vec);
 
 // Also for different UI elements there are dedicated functions - one for aggregates (vectors for now)
 // other for separate UI elements - check UIElements.hpp
