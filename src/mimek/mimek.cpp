@@ -1,5 +1,7 @@
 #include "mimek.hpp"
 
+#include "Utils.hpp"
+
 static Mouse_Pointer mouse_pointer;
 static Button_Vec button_vec;
 
@@ -43,9 +45,31 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
   SDL_Event event;
 
-
   // Initialize elements
   init_ui_elements_buttons_mim(button_vec);
+
+  // DEBUG checks
+  float a, b, c;
+  a = 100.0;
+  b = -123.0;
+  c = 0.0;
+
+  printf("Min: %f\n", utils_mim_min_3_floats(a, b, c));
+  printf("Max: %f\n", utils_mim_max_3_floats(a, b, c));
+
+  uint8_t red, green, blue;
+  int h;
+  float s, l;
+
+  red = 82;
+  green = 0;
+  blue = 87;
+
+  color_mim_rgb_to_hsl(red, green, blue, h, s, l);
+
+  printf("Hue: %d\n", h);
+  printf("Saturation: %f\n", s);
+  printf("Lightness: %f\n", l);
 
   while(running) {
     // Handling events

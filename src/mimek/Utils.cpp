@@ -5,7 +5,44 @@
 #include <stdio.h>
 
 void utils_mim_clamp_float(float& value) {
-  COMPILETIME_NOT_IMPLEMENTED
+  if (value > 1.0) value = 1.0;
+  if (value < 0.0) value = 0.0;
+}
+
+float utils_mim_min_3_floats(float a, float b, float c) {
+  float min;
+  
+  if (a < b) min = a; else min = b;
+  if (c < min) min = c;
+
+  return min;
+}
+
+float utils_mim_max_3_floats(float a, float b, float c) {
+  float max;
+
+  if (a > b) max = a; else max = b;
+  if (c > max) max = c;
+
+  return max;
+}
+
+int utils_mim_min_3_ints(int a, int b, int c) {
+  int min;
+
+  if (a < b) min = a; else min = b;
+  if (c < min) min = c;
+
+  return min;
+}
+
+int utils_mim_max_3_ints(int a, int b, int c) {
+  int max;
+
+  if (a > b) max = a; else max = b;
+  if (c > max) max = c;
+
+  return max;
 }
 
 void utils_mim_get_points_from_rect(SDL_Point (&points)[5], const SDL_Rect& rect) {
