@@ -1,8 +1,10 @@
 #include "Render.hpp"
 #include "UIelements.hpp"
 #include "Utils.hpp"
+#include "const.hpp"
 
 #include <stdio.h>
+#include <algorithm>
 
 void set_rendercolor_mim(SDL_Renderer*& engine_renderer, const SDL_Color& color) {
   SDL_SetRenderDrawColor(engine_renderer, color.r, color.g, color.b, color.a);
@@ -43,7 +45,34 @@ void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec& poin
 #endif
 
   // @TODO big task: Implement scanline fill algorithm
+  std::vector<int> intersection_points(SCREEN_WIDTH);
 
+  for (int scanline_y = y_min; scanline_y <= y_max; scanline_y++) {
+    int intersection_count = 0;
+
+    // Finding intersection points on each scanline
+    for (size_t i = 0; i < points_vec.size(); i++) {
+      const Point2D& current_point = points_vec[i];
+      const Point2D& next_point = points_vec[(i + 1) % points_vec.size()];
+
+      if ((current_point.y <= scanline_y && next_point.y > scanline_y) || (current_point.y > scanline_y && next_point.y <= scanline_y)) {
+        float t = (float)(scanline_y - current_point.y) / (next_point.y - current_point.y);
+        int intersect_x = (int)(current_point.x + t * (next_point.x - current_point.x));
+        intersection_points[intersection_count++] = intersect_x;
+      }
+    }
+
+    // Sorting points in ascending order
+    std::sort(intersection_points.begin(), intersection_points.begin() + intersection_count);
+
+    // Drawing lines
+    for (size_t i = 0; i < intersection_count; i += 2) {
+      int start_x = intersection_points[i];
+      int end_x   = intersection_points[i + 1];
+
+      SDL_RenderDrawLine(engine_renderer, start_x, scanline_y, end_x, scanline_y);
+    }
+  }
 }
 
 void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv) {
