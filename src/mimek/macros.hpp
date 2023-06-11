@@ -26,5 +26,10 @@
     assert(FUNCTION_OR_FEATURE_NOT_IMPLEMENTED); \
   } while (0)
 
+#define BAD_RUNTIME_EXECUTION_PATH() \
+  do { \
+    assert(RUNTIME_EXECTION_PATH_ERROR); \
+  } while (0)
+
 #endif /* _H_MACROS */
 

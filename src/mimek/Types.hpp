@@ -7,9 +7,9 @@
 #define OUTBAR_SIZE_BUTTON 15
 
 enum STATUS {
-  UnFocused,
-  Focused,
-  Clicked
+  UN_FOCUSED,
+  FOCUSED,
+  CLICKED 
 };
 
 typedef struct Point2D {
@@ -20,15 +20,23 @@ typedef struct Point2D {
 typedef struct Button {
   size_t id;
 
+  STATUS status;
+
   SDL_Rect rect;
   int outbar_size = OUTBAR_SIZE_BUTTON; // in pixels
 
+  // @TODO: colors based on status
   SDL_Color main_color;
   SDL_Color light_color; // Color should be in some relation to main color
+
+  SDL_Color focused_main_color;
+  SDL_Color focused_light_color;
+
+  SDL_Color clicked_main_color;
+  SDL_Color clicked_light_color;
+
   SDL_Color outline = WHITE; // White of course
   SDL_Color innerlines = GRAY; // Gray
-
-  STATUS status;
 
 } Button;
 

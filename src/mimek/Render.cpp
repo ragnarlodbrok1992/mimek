@@ -2,6 +2,7 @@
 #include "UIelements.hpp"
 #include "Utils.hpp"
 #include "const.hpp"
+#include "macros.hpp"
 
 #include <stdio.h>
 #include <algorithm>
@@ -89,10 +90,34 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
 
   // @TODO: change colors based on STATUS
 
+  SDL_Color render_color;
+  SDL_Color render_light_color;
+
+  switch (button.status) {
+    case STATUS::UN_FOCUSED: 
+      render_color       = button.main_color;
+      render_light_color = button.light_color;
+      break;
+
+    case STATUS::FOCUSED:
+      render_color       = button.focused_main_color;
+      render_light_color = button.focused_light_color;
+      break;
+
+    case STATUS::CLICKED:
+      render_color       = button.clicked_main_color;
+      render_light_color = button.clicked_light_color;
+      break;
+
+    default:
+      BAD_RUNTIME_EXECUTION_PATH();
+      break;
+  }
+
   utils_mim_get_points_from_rect(outer_points, button.rect);
   utils_mim_get_points_to_inner_button(outer_points, inner_points);
 
-  set_rendercolor_mim(engine_renderer, button.main_color);
+  set_rendercolor_mim(engine_renderer, render_color);
   SDL_RenderFillRect(engine_renderer, &button.rect);
 
   // Pushing points to create a vector for lighter area
@@ -104,7 +129,7 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
   lighter_area_vec.push_back(utils_mim_sdl_point_to_point_2d(outer_points[3]));
 
   // Rendering filled polygon with lighter color
-  set_rendercolor_mim(engine_renderer, button.light_color);
+  set_rendercolor_mim(engine_renderer, render_light_color);
   mim_render_filled_polygon(engine_renderer, lighter_area_vec);
 
   set_rendercolor_mim(engine_renderer, button.outline);

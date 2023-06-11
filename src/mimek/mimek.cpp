@@ -49,6 +49,10 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
   // Initialize elements
   init_ui_elements_buttons_mim(button_vec);
 
+  // Initialize UI handlers
+  static Button* hovered_button = NULL;
+  static Button* worked_button = NULL;
+
   while(running) {
     // Handling events
     while (SDL_PollEvent(&event)) {
@@ -68,11 +72,9 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 #endif 
 
         // Selecting madafakin buttons
+        // Changing from Clicked to clicked or focused
         Button* selected_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
-
-        // DEBUG - changing color of button
-        if (selected_button != NULL) button_set_color(*selected_button, {0, 255, 127, 255});
-
+        if (selected_button != NULL) button_click(*selected_button);
       }
       
       // Keyboard presses
@@ -85,9 +87,14 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
     // Check mouse hovering @TODO should this be done in every frame? Use QuadTree for checking for UI elements
     mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
-    Button* selected_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
-    if (NULL != selected_button) {
+    hovered_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
 
+    if (hovered_button != NULL) {
+      worked_button = hovered_button;
+      if (worked_button->status != STATUS::CLICKED) worked_button->status = STATUS::FOCUSED;
+    } else if (worked_button != NULL) {
+      if (worked_button->status != STATUS::CLICKED) worked_button->status = STATUS::UN_FOCUSED;
+      worked_button = NULL;
     }
 
     // Clearning the screen
@@ -113,8 +120,6 @@ void clean_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   SDL_Quit();
 
 }
-
-
 
 void test_mim() {
   NOT_IMPLEMENTED();

@@ -3,6 +3,9 @@
 #include "Types.hpp"
 #include "Color.hpp"
 #include "Utils.hpp"
+#include "macros.hpp"
+
+#include <stdio.h>
 
 size_t BUTTON_ID = 0;
 
@@ -14,15 +17,34 @@ Button create_button_mim(SDL_Rect rect, SDL_Color color) {
 
   temp_button.rect = rect;
   temp_button.main_color = color;
-  color_mim_change_lightness(temp_button.main_color, temp_button.light_color, 0.7f);
+  color_mim_change_lightness(temp_button.main_color, temp_button.light_color, 0.6f);
 
-  temp_button.status = STATUS::UnFocused;
+  color_mim_change_lightness(temp_button.main_color, temp_button.focused_main_color, 0.8f);
+  color_mim_change_lightness(temp_button.main_color, temp_button.focused_light_color, 0.9f);
+
+  color_mim_change_lightness(temp_button.main_color, temp_button.clicked_main_color, 0.2f);
+  color_mim_change_lightness(temp_button.main_color, temp_button.clicked_light_color, 0.4f);
+
+  temp_button.status = STATUS::UN_FOCUSED;
 
   return temp_button;
 }
 
 void button_set_color(Button& button, SDL_Color color) {
   button.main_color = color;
+}
+
+void button_click(Button& button) {
+  switch (button.status) {
+    case STATUS::FOCUSED:
+      button.status = STATUS::CLICKED;
+      break;
+    case STATUS::CLICKED:
+      button.status = STATUS::FOCUSED;
+      break;
+    default:
+      break;
+  }
 }
 
 void init_ui_elements_buttons_mim(Button_Vec& bv) {
