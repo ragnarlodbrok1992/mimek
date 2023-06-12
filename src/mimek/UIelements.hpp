@@ -11,7 +11,7 @@ void button_set_color(Button& button, SDL_Color color);
 void button_click(Button& button);
 void init_ui_elements_buttons_mim(Button_Vec& bv);
 
-Layout create_layout_mim(SDL_Rect rect, SDL_Color color);
+Layout* init_default_layout_mim();
 
 
 #endif /* _H_UIELEMENTS */

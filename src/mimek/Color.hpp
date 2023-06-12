@@ -20,6 +20,9 @@ constexpr SDL_Color YELLOW     = {255, 255, 0,   255};
 // Default button colors
 constexpr SDL_Color DEFAULT_BUTTON_PURPLE = {163, 73, 164, 255};
 
+// Default layout colors
+constexpr SDL_Color DEFAULT_LAYOUT_PURPLE = {224, 102, 255, 255};
+
 void color_mim_change_lightness(SDL_Color& main_color, SDL_Color& light_color, float brightness);
 void color_mim_rgb_to_hsl(uint8_t& r, uint8_t& g, uint8_t& b, int& h, float& s, float& l);
 void color_mim_hsl_to_rgb(int& h, float& s, float& l, uint8_t& r, uint8_t& g, uint8_t& b);

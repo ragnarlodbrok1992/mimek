@@ -10,6 +10,8 @@ static Button_Vec button_vec;
 static Button* hovered_button = NULL;
 static Button* worked_button = NULL;
 
+static Layout* default_layout = NULL;
+
 int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Initialization.\n");
 
@@ -27,7 +29,7 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
       SCREEN_WIDTH,
       SCREEN_HEIGHT,
       SDL_WINDOW_SHOWN);
-  if (engine_window == nullptr) {
+  if (engine_window == NULL) {
     printf("Failed to create SDL window: %s\n", SDL_GetError());
     return 1;
 
@@ -38,13 +40,18 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
       engine_window,
       -1,
       SDL_RENDERER_ACCELERATED);
-  if (engine_renderer == nullptr) {
+  if (engine_renderer == NULL) {
     printf("Failed to create SDL renderer: %s\n", SDL_GetError());
     return 1;
   }
 
   // Initialize elements
   init_ui_elements_buttons_mim(button_vec);
+  // init_ui_elements_layout_mim(default_layout);
+
+  printf("Default layout: %p\n", default_layout);
+  default_layout = init_default_layout_mim();
+  printf("Default layout: %p\n", default_layout);
 
   return 0;
 }
@@ -105,6 +112,10 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     SDL_RenderClear(engine_renderer);
 
     // Render code goes here
+    // Render layout
+    render_layout(engine_renderer,  default_layout);
+
+    // Render buttons
     render_ui_buttons(engine_renderer, button_vec);
 
     // Test rendering
@@ -117,6 +128,11 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
 void clean_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Cleaning.\n");
+
+  // Deleting heap stuff
+  delete default_layout;
+
+  printf("Heap cleaned!\n");
 
   SDL_DestroyRenderer(engine_renderer);
   SDL_DestroyWindow(engine_window);

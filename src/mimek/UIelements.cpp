@@ -50,7 +50,7 @@ void button_click(Button& button) {
 
 void init_ui_elements_buttons_mim(Button_Vec& bv) {
   // Some debug initializations
-  bv.push_back(create_button_mim(DEFAULT_BUTTON_SIZE_POS, RED));
+  bv.push_back(create_button_mim(DEFAULT_BUTTON_SIZE_POS, DEFAULT_BUTTON_PURPLE));
 }
 
 Button* select_button(Button_Vec& bv, int x, int y) {
@@ -63,8 +63,14 @@ Button* select_button(Button_Vec& bv, int x, int y) {
   return NULL;
 }
 
-Layout create_layout_mim(SDL_Rect rect, SDL_Color color) {
-  Layout temp_layout;
+Layout* init_default_layout_mim() {
+  Layout* temp_layout = new Layout;
+
+  // DEFAULT Layout
+  temp_layout->layout_type = TOP_BOTTOM_LINE;
+
+  temp_layout->background       = DEFAULT_LAYOUT_SIZE_POS;
+  temp_layout->background_color = DEFAULT_LAYOUT_PURPLE;
 
   return temp_layout;
 }

@@ -19,5 +19,8 @@ void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec& poin
 void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv);
 void render_button(SDL_Renderer*& engine_renderer, Button& button);
 
+// Layouts
+void render_layout(SDL_Renderer*& engine_renderer, Layout*& layout);
+
 #endif /* _H_RENDER */
 

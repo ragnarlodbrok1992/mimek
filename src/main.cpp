@@ -11,8 +11,8 @@ int main(int argc, char* argv[]) {
   printf("Screen Height: %d\n", SCREEN_HEIGHT);
 
   // Create window, renderer, engine_running variable
-  SDL_Window* window = nullptr;
-  SDL_Renderer* renderer = nullptr;
+  SDL_Window* window = NULL;
+  SDL_Renderer* renderer = NULL;
   bool engine_running = true;
 
   // Run init_mim function

@@ -150,3 +150,10 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
   SDL_RenderDrawLine(engine_renderer, outer_points[3].x, outer_points[3].y, inner_points[3].x, inner_points[3].y);
 
 }
+
+
+void render_layout(SDL_Renderer*& engine_renderer, Layout*& layout) {
+  set_rendercolor_mim(engine_renderer, layout->background_color);
+  SDL_RenderFillRect(engine_renderer,  &layout->background);
+}
+
