@@ -6,6 +6,10 @@
 static Mouse_Pointer mouse_pointer;
 static Button_Vec button_vec;
 
+// Initialize UI handlers
+static Button* hovered_button = NULL;
+static Button* worked_button = NULL;
+
 int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Initialization.\n");
 
@@ -26,6 +30,7 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   if (engine_window == nullptr) {
     printf("Failed to create SDL window: %s\n", SDL_GetError());
     return 1;
+
   }
 
   // Create a renderer
@@ -37,6 +42,10 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
     printf("Failed to create SDL renderer: %s\n", SDL_GetError());
     return 1;
   }
+
+  // Initialize elements
+  init_ui_elements_buttons_mim(button_vec);
+
   return 0;
 }
 
@@ -46,12 +55,6 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
   SDL_Event event;
 
-  // Initialize elements
-  init_ui_elements_buttons_mim(button_vec);
-
-  // Initialize UI handlers
-  static Button* hovered_button = NULL;
-  static Button* worked_button = NULL;
 
   while(running) {
     // Handling events

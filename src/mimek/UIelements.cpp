@@ -3,6 +3,7 @@
 #include "Types.hpp"
 #include "Color.hpp"
 #include "Utils.hpp"
+#include "ui_sizes_const.hpp"
 #include "macros.hpp"
 
 #include <stdio.h>
@@ -49,12 +50,7 @@ void button_click(Button& button) {
 
 void init_ui_elements_buttons_mim(Button_Vec& bv) {
   // Some debug initializations
-
-  SDL_Rect temp = {100, 100, 200, 100};
-  bv.push_back(create_button_mim(temp, RED));
-
-  temp = {100, 220, 200, 100};
-  bv.push_back(create_button_mim(temp, GREEN));
+  bv.push_back(create_button_mim(DEFAULT_BUTTON_SIZE_POS, RED));
 }
 
 Button* select_button(Button_Vec& bv, int x, int y) {
@@ -65,5 +61,11 @@ Button* select_button(Button_Vec& bv, int x, int y) {
     }
   }
   return NULL;
+}
+
+Layout create_layout_mim(SDL_Rect rect, SDL_Color color) {
+  Layout temp_layout;
+
+  return temp_layout;
 }
 

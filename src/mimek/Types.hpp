@@ -4,12 +4,16 @@
 #include <vector>
 #include "Color.hpp"
 
-#define OUTBAR_SIZE_BUTTON 15
 
 enum STATUS {
   UN_FOCUSED,
   FOCUSED,
   CLICKED 
+};
+
+enum LAYOUT_TYPE {
+  TOP_BOTTOM_LINE,
+  LEFT_RIGHT_LINE
 };
 
 typedef struct Point2D {
@@ -23,7 +27,6 @@ typedef struct Button {
   STATUS status;
 
   SDL_Rect rect;
-  int outbar_size = OUTBAR_SIZE_BUTTON; // in pixels
 
   // @TODO: colors based on status
   SDL_Color main_color;
@@ -40,9 +43,19 @@ typedef struct Button {
 
 } Button;
 
-
 typedef std::vector<Button> Button_Vec;
 typedef std::vector<Point2D> Point2D_Vec;
+
+typedef struct Layout {
+  Button_Vec buttons; 
+
+  LAYOUT_TYPE layout_type;
+
+  SDL_Rect background;
+
+  SDL_Color background_color; // It should have lower alpha value?
+} Layout;
+
 
 #endif /* _H_TYPES */
 

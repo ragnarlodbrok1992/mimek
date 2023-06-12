@@ -6,12 +6,13 @@
 #include "Render.hpp"
 
 Button create_button_mim(SDL_Rect rect, SDL_Color color);
+Button* select_button(Button_Vec& bv, int x, int y);
 void button_set_color(Button& button, SDL_Color color);
 void button_click(Button& button);
-
 void init_ui_elements_buttons_mim(Button_Vec& bv);
 
-Button* select_button(Button_Vec& bv, int x, int y);
+Layout create_layout_mim(SDL_Rect rect, SDL_Color color);
+
 
 #endif /* _H_UIELEMENTS */
 

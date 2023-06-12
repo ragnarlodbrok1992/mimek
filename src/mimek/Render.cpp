@@ -13,6 +13,7 @@ void set_rendercolor_mim(SDL_Renderer*& engine_renderer, const SDL_Color& color)
 
 void mim_render(SDL_Renderer*& engine_renderer) {
   // TEST render
+#if 0
   SDL_Color test_color = YELLOW;
   SDL_Color darker_color;
   SDL_Color lighter_color;
@@ -32,6 +33,7 @@ void mim_render(SDL_Renderer*& engine_renderer) {
 
   set_rendercolor_mim(engine_renderer, lighter_color);
   SDL_RenderFillRect(engine_renderer, &lighter_rect);
+#endif
 }
 
 void mim_render_filled_polygon(SDL_Renderer*& engine_renderer, Point2D_Vec& points_vec) {
