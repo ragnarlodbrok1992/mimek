@@ -153,7 +153,15 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
 
 
 void render_layout(SDL_Renderer*& engine_renderer, Layout*& layout) {
+  // Render background
   set_rendercolor_mim(engine_renderer, layout->background_color);
   SDL_RenderFillRect(engine_renderer,  &layout->background);
+
+  // Render forground top bar
+  SDL_Color foreground_color;
+  color_mim_change_lightness(layout->background_color, foreground_color, 0.7f);
+
+  set_rendercolor_mim(engine_renderer, foreground_color);
+  SDL_RenderFillRect(engine_renderer,  &layout->top_bar);
 }
 

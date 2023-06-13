@@ -12,6 +12,7 @@ void button_click(Button& button);
 void init_ui_elements_buttons_mim(Button_Vec& bv);
 
 Layout* init_default_layout_mim();
+SDL_Rect make_top_bar_of_layout(SDL_Rect& layout_rect);
 
 
 #endif /* _H_UIELEMENTS */

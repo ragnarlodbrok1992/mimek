@@ -75,3 +75,7 @@ Layout* init_default_layout_mim() {
   return temp_layout;
 }
 
+SDL_Rect make_top_bar_of_layout(SDL_Rect& layout_rect) {
+
+}
+

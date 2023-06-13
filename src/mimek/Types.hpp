@@ -51,6 +51,7 @@ typedef struct Layout {
 
   LAYOUT_TYPE layout_type;
 
+  SDL_Rect top_bar; // Kinda lighter - allows to drag around layouts
   SDL_Rect background;
 
   SDL_Color background_color; // It should have lower alpha value?
