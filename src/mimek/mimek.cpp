@@ -83,8 +83,10 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
         // Selecting madafakin buttons
         // Changing from Clicked to clicked or focused
+#if 0
         Button* selected_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
         if (selected_button != NULL) button_click(*selected_button);
+#endif
       }
       
       // Keyboard presses
@@ -96,6 +98,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     }
 
     // Check mouse hovering @TODO should this be done in every frame? Use QuadTree for checking for UI elements
+#if 0
     mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
     hovered_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
 
@@ -106,6 +109,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
       if (worked_button->status != STATUS::CLICKED) worked_button->status = STATUS::UN_FOCUSED;
       worked_button = NULL;
     }
+#endif
 
     // Clearning the screen
     SDL_SetRenderDrawColor(engine_renderer, 0, 0, 0, 255);
@@ -116,7 +120,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     render_layout(engine_renderer,  default_layout);
 
     // Render buttons
-    render_ui_buttons(engine_renderer, button_vec);
+    // render_ui_buttons(engine_renderer, button_vec);
 
     // Test rendering
     mim_render(engine_renderer);

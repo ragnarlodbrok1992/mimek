@@ -23,6 +23,7 @@ Point2D utils_mim_sdl_point_to_point_2d(SDL_Point pt);
 // Print functions
 void print_points(SDL_Point (&points)[5]);
 void print_color(SDL_Color color);
+void print_rect(SDL_Rect rect);
 
 #endif /* _H_UTILS */
 

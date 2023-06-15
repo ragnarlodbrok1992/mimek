@@ -72,10 +72,16 @@ Layout* init_default_layout_mim() {
   temp_layout->background       = DEFAULT_LAYOUT_SIZE_POS;
   temp_layout->background_color = DEFAULT_LAYOUT_PURPLE;
 
+  make_top_bar_layout(temp_layout->background, temp_layout->top_bar);
+
+  // DEBUG
+  print_rect(temp_layout->background);
+  print_rect(temp_layout->top_bar);
+
   return temp_layout;
 }
 
-void make_top_bar_of_layout(SDL_Rect& layout_rect, SDL_Rect& top_bar_rect) {
+void make_top_bar_layout(SDL_Rect& layout_rect, SDL_Rect& top_bar_rect) {
   // +---------------------------->
   // |
   // |
@@ -84,6 +90,15 @@ void make_top_bar_of_layout(SDL_Rect& layout_rect, SDL_Rect& top_bar_rect) {
   // |
   // |
   // v
+
+  top_bar_rect.x = layout_rect.x + 5;
+  top_bar_rect.y = layout_rect.y + 5;
+  top_bar_rect.w = layout_rect.w - 10;
+  top_bar_rect.h = 15;
+
+  // DEBUG
+  print_rect(layout_rect);
+  print_rect(top_bar_rect);
 
 }
 

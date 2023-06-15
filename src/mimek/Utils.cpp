@@ -127,3 +127,9 @@ void print_color(SDL_Color color) {
 }
 
 
+void print_rect(SDL_Rect rect) {
+  printf("X: %d\n", rect.x);
+  printf("Y: %d\n", rect.y);
+  printf("W: %d\n", rect.w);
+  printf("H: %d\n", rect.h);
+}
