@@ -43,8 +43,7 @@ typedef struct Button {
 
 } Button;
 
-typedef std::vector<Button> Button_Vec;
-typedef std::vector<Point2D> Point2D_Vec;
+typedef std::vector<Button>  Button_Vec;
 
 typedef struct Layout {
   Button_Vec buttons; 
@@ -57,6 +56,8 @@ typedef struct Layout {
   SDL_Color background_color; // It should have lower alpha value?
 } Layout;
 
+typedef std::vector<Point2D> Point2D_Vec;
+typedef std::vector<Layout>  Layout_Vec;
 
 #endif /* _H_TYPES */
 

@@ -4,11 +4,13 @@
 #include "Types.hpp"
 
 static Mouse_Pointer mouse_pointer;
-// static Button_Vec button_vec;
+static Layout_Vec layout_vec;
 
 // Initialize UI handlers
 static Button* hovered_button = NULL;
 static Button* worked_button = NULL;
+static Layout* hovered_layout = NULL;
+static Layout* worked_layout = NULL;
 
 static Layout* default_layout = NULL;
 
@@ -85,8 +87,13 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
         // Selecting madafakin buttons
         // Changing from Clicked to clicked or focused
 #if 1
-        Button* selected_button = select_button(default_layout->buttons, mouse_pointer.pos_x, mouse_pointer.pos_y); 
-        if (selected_button != NULL) button_click(*selected_button);
+        Layout* selected_layout = select_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
+        if (selected_layout != NULL) layout_click(*selected_layout);
+
+        // DEBUG
+        printf("Selected layout: %p\n", selected_layout);
+        // Button* selected_button = select_button(default_layout->buttons, mouse_pointer.pos_x, mouse_pointer.pos_y); 
+        // if (selected_button != NULL) button_click(*selected_button);
 #endif
       }
       

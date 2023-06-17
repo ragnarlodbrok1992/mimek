@@ -84,6 +84,20 @@ Layout* init_default_layout_mim() {
   return temp_layout;
 }
 
+Layout* select_layout(Layout_Vec& lv, int x, int y) {
+  for (auto& layout : lv) {
+    if (((x > layout.background.x) && (x < layout.background.x + layout.background.w)) &&
+        ((y > layout.background.y) && (y < layout.background.y + layout.background.h))) {
+      return &layout;
+    }
+  }
+  return NULL;
+}
+
+void layout_click(Layout& layout) {
+
+}
+
 void make_top_bar_layout(SDL_Rect& layout_rect, SDL_Rect& top_bar_rect) {
   // +---------------------------->
   // |
