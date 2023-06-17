@@ -163,5 +163,8 @@ void render_layout(SDL_Renderer*& engine_renderer, Layout*& layout) {
 
   set_rendercolor_mim(engine_renderer, foreground_color);
   SDL_RenderFillRect(engine_renderer,  &layout->top_bar);
+
+  // Render all Buttons inside layout
+  render_ui_buttons(engine_renderer, layout->buttons);
 }
 

@@ -74,6 +74,9 @@ Layout* init_default_layout_mim() {
 
   make_top_bar_layout(temp_layout->background, temp_layout->top_bar);
 
+  // Creating default buttons for layout
+  init_ui_elements_buttons_mim(temp_layout->buttons);
+
   // DEBUG
   print_rect(temp_layout->background);
   print_rect(temp_layout->top_bar);

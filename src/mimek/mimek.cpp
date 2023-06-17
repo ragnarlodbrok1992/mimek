@@ -4,7 +4,7 @@
 #include "Types.hpp"
 
 static Mouse_Pointer mouse_pointer;
-static Button_Vec button_vec;
+// static Button_Vec button_vec;
 
 // Initialize UI handlers
 static Button* hovered_button = NULL;
@@ -46,7 +46,7 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   }
 
   // Initialize elements
-  init_ui_elements_buttons_mim(button_vec);
+  // init_ui_elements_buttons_mim(button_vec);
   // init_ui_elements_layout_mim(default_layout);
 
   printf("Default layout: %p\n", default_layout);
@@ -72,6 +72,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
       }
 
       // Handling mouse
+      // MOUSE - pressing mouse button (left and right for now)
       if (event.type == SDL_MOUSEBUTTONDOWN) {
         mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
 
@@ -83,8 +84,8 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
         // Selecting madafakin buttons
         // Changing from Clicked to clicked or focused
-#if 0
-        Button* selected_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
+#if 1
+        Button* selected_button = select_button(default_layout->buttons, mouse_pointer.pos_x, mouse_pointer.pos_y); 
         if (selected_button != NULL) button_click(*selected_button);
 #endif
       }
@@ -98,9 +99,9 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     }
 
     // Check mouse hovering @TODO should this be done in every frame? Use QuadTree for checking for UI elements
-#if 0
+#if 1
     mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
-    hovered_button = select_button(button_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
+    hovered_button = select_button(default_layout->buttons, mouse_pointer.pos_x, mouse_pointer.pos_y);
 
     if (hovered_button != NULL) {
       worked_button = hovered_button;
