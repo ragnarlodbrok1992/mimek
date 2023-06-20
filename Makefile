@@ -43,11 +43,11 @@ scanlinefillalgorithm: test/ScanlineFillAlgorithm.cpp
 		  /LIBPATH:"$(SDL2LIB)" \
 			SDL2.lib SDL2main.lib
 
-test_rdtsc: test/rdtscPerformanceCounter.cpp
+test_rdtscp: test/rdtscpPerformanceCounter.cpp
 	@cl /W4 /nologo \
 		/std:c++20 \
 		/Zi \
 		/EHsc \
-		/Fetest_rdtsc.exe \
-		test/rdtscPerformanceCounter.cpp
+		/Fetest_rdtscp.exe \
+		test/rdtscpPerformanceCounter.cpp
 
