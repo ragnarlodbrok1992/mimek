@@ -56,3 +56,24 @@ test_rdtscp: test/rdtscpPerformanceCounter.cpp
 		test/rdtscpPerformanceCounter.cpp \
 		rdstcp.lib
 
+test_query_performance_frequency: test/QueryPerformanceFrequency.cpp
+	@cl /W4 /nologo \
+		/std:c++20 \
+		/Zi \
+		/EHsc \
+		/FeQueryPerformanceFrequency.exe \
+		test/QueryPerformanceFrequency.cpp
+
+test_rdmsr: test/rdmsrInline.cpp
+	@ml64 /c /Fo rdmsr.obj \
+		test/rdmsr.asm
+	@lib rdmsr.obj \
+		/OUT:rdmsr.lib
+	@cl /W4 /nologo \
+		/std:c++20 \
+		/Zi \
+		/EHsc \
+		/Ferdmsr.exe \
+		test/rdmsrInline.cpp \
+		rdmsr.lib
+
