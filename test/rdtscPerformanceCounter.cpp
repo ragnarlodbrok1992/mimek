@@ -5,6 +5,11 @@ uint64_t rdtsc() {
   uint32_t low, high;
   // @TODO: fix this
   // asm (volatile("rdtsc" : "=a" (low), "=d" (high)));
+  __asm {
+    rdtsc
+    mov low, eax
+    mov high, edx
+  }
   return ((uint64_t) high << 32) | low;
 }
 
