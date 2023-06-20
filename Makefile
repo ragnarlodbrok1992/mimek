@@ -25,7 +25,7 @@ mimek: src/main.cpp
 				SDL2.lib SDL2main.lib
 				
 clean:
-	@del *.obj *.exe *.ilk *.pdb *.dll *~
+	@del *.obj *.exe *.ilk *.pdb *.dll *.lib *~
 
 scanlinefillalgorithm: test/ScanlineFillAlgorithm.cpp
 	@cp lib\x64\SDL2.dll .
@@ -44,10 +44,15 @@ scanlinefillalgorithm: test/ScanlineFillAlgorithm.cpp
 			SDL2.lib SDL2main.lib
 
 test_rdtscp: test/rdtscpPerformanceCounter.cpp
+	@ml64 /c /Fo rdtscp.obj \
+		test/rdtscp.asm
+	@lib rdtscp.obj \
+		/OUT:rdstcp.lib
 	@cl /W4 /nologo \
 		/std:c++20 \
 		/Zi \
 		/EHsc \
-		/Fetest_rdtscp.exe \
-		test/rdtscpPerformanceCounter.cpp
+		/FerdtscpPerformanceCounter.exe \
+		test/rdtscpPerformanceCounter.cpp \
+		rdstcp.lib
 

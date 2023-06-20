@@ -1,27 +1,18 @@
 #include <stdio.h>
 #include <cstdint>
 
-uint64_t rdtsc() {
-  uint32_t low, high;
-  // @TODO: fix this
-  // asm (volatile("rdtsc" : "=a" (low), "=d" (high)));
-  __asm {
-    rdtsc
-    mov low, eax
-    mov high, edx
-  }
-  return ((uint64_t) high << 32) | low;
-}
+extern "C" uint64_t __rdtscp_proc();
 
 int main() {
-  uint64_t start = rdtsc();
+  uint64_t start = __rdtscp_proc();
 
   // Measured code goes here
+  printf("How long does it take to print out Mimek engine?\n");
 
-  uint64_t end = rdtsc();
+  uint64_t end = __rdtscp_proc();
   uint64_t elapsed = end - start;
 
-  printf("Elapsed time of measured code: %d\n", elapsed);
+  printf("Elapsed time of measured code: %lld\n", elapsed);
 
   return 0;
 }

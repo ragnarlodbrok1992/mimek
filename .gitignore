@@ -4,6 +4,7 @@
 *.ilk
 *.pdb
 *.dll
+*.lib
 
 # SDL2 stuff
 # Engine includes are inside src dir
