@@ -55,46 +55,62 @@ void init_ui_elements_buttons_mim(Button_Vec& bv) {
 
 Button* select_button(Button_Vec& bv, int x, int y) {
   for (auto& b : bv) {
+    /*
     if (((x > b.rect.x) && (x < b.rect.x + b.rect.w)) &&
         ((y > b.rect.y) && (y < b.rect.y + b.rect.h))) {
       return &b;
+      */
+    if (is_x_y_in_rect(b.rect, x, y)) return &b;
+    }
+  return NULL;
+}
+
+Button* select_button_from_layout(Layout_Vec& layout_vec, int x, int y) {
+  Button* return_button = NULL;
+  for (auto& layout : layout_vec) {
+    return_button = select_button(layout.buttons, x, y);
+    if (return_button != NULL) {
+      return return_button;
     }
   }
   return NULL;
 }
 
-Layout* init_default_layout_mim() {
-  Layout* temp_layout = new Layout;
+Layout create_default_layout_mim() {
+  Layout temp_layout;
 
   // DEFAULT Layout
-  temp_layout->layout_type = TOP_BOTTOM_LINE;
+  temp_layout.layout_type = TOP_BOTTOM_LINE;
 
-  temp_layout->background       = DEFAULT_LAYOUT_SIZE_POS;
-  temp_layout->background_color = DEFAULT_LAYOUT_PURPLE;
+  temp_layout.background       = DEFAULT_LAYOUT_SIZE_POS;
+  temp_layout.background_color = DEFAULT_LAYOUT_PURPLE;
 
-  make_top_bar_layout(temp_layout->background, temp_layout->top_bar);
+  make_top_bar_layout(temp_layout.background, temp_layout.top_bar);
 
   // Creating default buttons for layout
-  init_ui_elements_buttons_mim(temp_layout->buttons);
+  init_ui_elements_buttons_mim(temp_layout.buttons);
 
   // DEBUG
-  print_rect(temp_layout->background);
-  print_rect(temp_layout->top_bar);
+  print_rect(temp_layout.background);
+  print_rect(temp_layout.top_bar);
 
   return temp_layout;
 }
 
 Layout* select_layout(Layout_Vec& lv, int x, int y) {
   for (auto& layout : lv) {
+    /*
     if (((x > layout.background.x) && (x < layout.background.x + layout.background.w)) &&
         ((y > layout.background.y) && (y < layout.background.y + layout.background.h))) {
       return &layout;
-    }
+      */
+    if (is_x_y_in_rect(rect, x, y)) return &layout;
   }
   return NULL;
 }
 
 void layout_click(Layout& layout) {
+  // Check if top_bar is clicked
 
 }
 

@@ -12,6 +12,9 @@ float utils_mim_max_3_floats(float a, float b, float c);
 int utils_mim_min_3_ints(int a, int b, int c);
 int utils_mim_max_3_ints(int a, int b, int c);
 
+// Boolean checks - geometry
+bool is_x_y_in_rect(SDL_Rect& rect, int& x, int& y);
+
 // Return fixed array of 5 SDL_Points out of rectangle
 void utils_mim_get_points_from_rect(SDL_Point (&points)[5], const SDL_Rect& rect);
 void utils_mim_get_points_to_inner_button(SDL_Point (&points_outer)[5], SDL_Point (&points_inner)[5]);

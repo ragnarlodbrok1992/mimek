@@ -12,7 +12,7 @@ static Button* worked_button = NULL;
 static Layout* hovered_layout = NULL;
 static Layout* worked_layout = NULL;
 
-static Layout* default_layout = NULL;
+static Layout default_layout;
 
 int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Initialization.\n");
@@ -51,9 +51,12 @@ int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   // init_ui_elements_buttons_mim(button_vec);
   // init_ui_elements_layout_mim(default_layout);
 
-  printf("Default layout: %p\n", default_layout);
-  default_layout = init_default_layout_mim();
-  printf("Default layout: %p\n", default_layout);
+  printf("Default layout: %p\n", &default_layout);
+  default_layout = create_default_layout_mim();
+  printf("Default layout: %p\n", &default_layout);
+
+  // Push back default_layout to layout_vec
+  layout_vec.push_back(default_layout);
 
   return 0;
 }
@@ -88,12 +91,13 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
         // Changing from Clicked to clicked or focused
 #if 1
         Layout* selected_layout = select_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
-        if (selected_layout != NULL) layout_click(*selected_layout);
-
         // DEBUG
         printf("Selected layout: %p\n", selected_layout);
-        // Button* selected_button = select_button(default_layout->buttons, mouse_pointer.pos_x, mouse_pointer.pos_y); 
-        // if (selected_button != NULL) button_click(*selected_button);
+
+        if (selected_layout != NULL) layout_click(*selected_layout);
+
+        Button* selected_button = select_button_from_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
+        if (selected_button != NULL) button_click(*selected_button);
 #endif
       }
       
@@ -108,7 +112,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
     // Check mouse hovering @TODO should this be done in every frame? Use QuadTree for checking for UI elements
 #if 1
     mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
-    hovered_button = select_button(default_layout->buttons, mouse_pointer.pos_x, mouse_pointer.pos_y);
+    hovered_button = select_button_from_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
 
     if (hovered_button != NULL) {
       worked_button = hovered_button;
@@ -125,7 +129,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
     // Render code goes here
     // Render layout
-    render_layout(engine_renderer,  default_layout);
+    render_layout_vec(engine_renderer, layout_vec);
 
     // Render buttons
     // render_ui_buttons(engine_renderer, button_vec);
@@ -142,7 +146,7 @@ void clean_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Cleaning.\n");
 
   // Deleting heap stuff
-  delete default_layout;
+  // delete default_layout;
 
   printf("Heap cleaned!\n");
 

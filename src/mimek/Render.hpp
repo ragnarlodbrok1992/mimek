@@ -20,7 +20,8 @@ void render_ui_buttons(SDL_Renderer*& engine_renderer, Button_Vec& bv);
 void render_button(SDL_Renderer*& engine_renderer, Button& button);
 
 // Layouts
-void render_layout(SDL_Renderer*& engine_renderer, Layout*& layout);
+void render_layout(SDL_Renderer*& engine_renderer, Layout* layout);
+void render_layout_vec(SDL_Renderer*& engine_rendere, Layout_Vec& layout_vec);
 
 #endif /* _H_RENDER */
 

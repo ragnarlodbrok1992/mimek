@@ -152,7 +152,7 @@ void render_button(SDL_Renderer*& engine_renderer, Button& button) {
 }
 
 
-void render_layout(SDL_Renderer*& engine_renderer, Layout*& layout) {
+void render_layout(SDL_Renderer*& engine_renderer, Layout* layout) {
   // Render background
   set_rendercolor_mim(engine_renderer, layout->background_color);
   SDL_RenderFillRect(engine_renderer,  &layout->background);
@@ -166,5 +166,11 @@ void render_layout(SDL_Renderer*& engine_renderer, Layout*& layout) {
 
   // Render all Buttons inside layout
   render_ui_buttons(engine_renderer, layout->buttons);
+}
+
+void render_layout_vec(SDL_Renderer*& engine_renderer, Layout_Vec& layout_vec) {
+  for (auto& layout : layout_vec) {
+    render_layout(engine_renderer, &layout);
+  }
 }
 

@@ -47,6 +47,12 @@ int utils_mim_max_3_ints(int a, int b, int c) {
   return max;
 }
 
+bool is_x_y_in_rect(SDL_Rect& rect, int& x, int& y) {
+    if (((x > rect.x) && (x < rect.x + rect.w)) &&
+        ((y > rect.y) && (y < rect.y + rect.h))) return true;
+    return false;
+}
+
 void utils_mim_get_points_from_rect(SDL_Point (&points)[5], const SDL_Rect& rect) {
   points[0].x = rect.x;
   points[0].y = rect.y;
