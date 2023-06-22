@@ -104,7 +104,7 @@ Layout* select_layout(Layout_Vec& lv, int x, int y) {
         ((y > layout.background.y) && (y < layout.background.y + layout.background.h))) {
       return &layout;
       */
-    if (is_x_y_in_rect(rect, x, y)) return &layout;
+    if (is_x_y_in_rect(layout.background, x, y)) return &layout;
   }
   return NULL;
 }
