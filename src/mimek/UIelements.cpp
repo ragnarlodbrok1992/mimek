@@ -97,7 +97,7 @@ Layout create_default_layout_mim() {
   return temp_layout;
 }
 
-Layout* select_layout(Layout_Vec& lv, int x, int y) {
+Layout* select_layout(Layout_Vec& lv, int& x, int& y) {
   for (auto& layout : lv) {
     /*
     if (((x > layout.background.x) && (x < layout.background.x + layout.background.w)) &&
@@ -109,9 +109,19 @@ Layout* select_layout(Layout_Vec& lv, int x, int y) {
   return NULL;
 }
 
-void layout_click(Layout& layout) {
+void layout_click(Layout& layout, int& x, int& y) {
   // Check if top_bar is clicked
+  if (is_top_bar_clicked(layout, x, y)) {
+    printf("Top bar clicked!\n");
+    // TODO: how should elements stick to mouse?
+    // maybe it should be "global" there is always one mouse pointer
+    // and only one element can "stick" to it...
+  }
+}
 
+bool is_top_bar_clicked(Layout& layout, int& x, int &y) {
+  if (is_x_y_in_rect(layout.top_bar, x, y)) return true;
+  return false;
 }
 
 void make_top_bar_layout(SDL_Rect& layout_rect, SDL_Rect& top_bar_rect) {

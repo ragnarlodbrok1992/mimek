@@ -14,6 +14,8 @@ static Layout* worked_layout = NULL;
 
 static Layout default_layout;
 
+static void* sticked_ui_element;
+
 int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Initialization.\n");
 
@@ -94,7 +96,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
         // DEBUG
         printf("Selected layout: %p\n", selected_layout);
 
-        if (selected_layout != NULL) layout_click(*selected_layout);
+        if (selected_layout != NULL) layout_click(*selected_layout, mouse_pointer.pos_x, mouse_pointer.pos_y);
 
         Button* selected_button = select_button_from_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
         if (selected_button != NULL) button_click(*selected_button);

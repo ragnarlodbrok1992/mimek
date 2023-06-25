@@ -26,6 +26,8 @@ typedef struct Button {
 
   STATUS status;
 
+  // Movable elements - can be dragged around
+  void (*update_movable_elements)();
   SDL_Rect rect;
 
   // @TODO: colors based on status
@@ -50,6 +52,8 @@ typedef struct Layout {
 
   LAYOUT_TYPE layout_type;
 
+  // Movable elements - can be dragged around
+  void (*update_movable_elements)();
   SDL_Rect top_bar; // Kinda lighter - allows to drag around layouts
   SDL_Rect background;
 

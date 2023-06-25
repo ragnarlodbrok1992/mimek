@@ -13,8 +13,9 @@ void button_click(Button& button);
 void init_ui_elements_buttons_mim(Button_Vec& bv);
 
 Layout create_default_layout_mim();
-Layout* select_layout(Layout_Vec& lv, int x, int y);
-void layout_click(Layout& layout);
+Layout* select_layout(Layout_Vec& lv, int& x, int& y);
+bool is_top_bar_clicked(Layout& layout, int& x, int& y);
+void layout_click(Layout& layout, int& x, int& y);
 void make_top_bar_layout(SDL_Rect& layout_rect, SDL_Rect& top_bar_rect);
 
 
