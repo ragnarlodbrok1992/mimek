@@ -98,16 +98,12 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
         // Changing from Clicked to clicked or focused
 #if 1
         Layout* selected_layout = select_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
-        // DEBUG
-        // printf("Selected layout: %p\n", selected_layout);
 
         if (selected_layout != NULL) {
           layout_click(*selected_layout, mouse_pointer.pos_x, mouse_pointer.pos_y);
           
           if (selected_layout->is_sticked) {
-            // printf("We have a stick!\n");
             sticked_ui_element = selected_layout;
-            printf("Selected_layout: %p\n", selected_layout);
           }
           else {
             sticked_ui_element = NULL;
@@ -120,24 +116,15 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
       }
 
       if (event.type == SDL_MOUSEMOTION) {
-        if (left_mouse_button_pressed) {
-          printf("Moving stuff around!\n");
-
-          // Layout layout = *(static_cast<Layout*>(sticked_ui_element));
-
-          // printf("selected_layout: %p\n", selected_layout);
-          printf("sticked_ui_element: %p\n", sticked_ui_element);
+        if (left_mouse_button_pressed && sticked_ui_element != NULL) {
           Layout* layout = (struct Layout*) sticked_ui_element;
-          printf("Pointer to layout: %p\n", &layout);
           update_layout_position(layout, event.motion.xrel, event.motion.yrel);
         }
       }
       
       if (event.type == SDL_MOUSEBUTTONUP) {
         left_mouse_button_pressed = false;
-        // sticked_ui_element->is_sticked = false;
         sticked_ui_element = NULL;
-        // printf("Releasing mouse button!\n");
       }
       
       // Keyboard presses
@@ -172,9 +159,7 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 
     if (left_mouse_button_pressed) {
       if (sticked_ui_element != NULL) {
-        // printf("Something to move!\n");
       }
-      // printf("Mouse button held!\n");
     }
 
 #endif
