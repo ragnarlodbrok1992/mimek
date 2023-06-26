@@ -14,7 +14,9 @@ static Layout* worked_layout = NULL;
 
 static Layout default_layout;
 
-static void* sticked_ui_element;
+static void* sticked_ui_element = NULL;
+
+static bool left_mouse_button_pressed = false;
 
 int init_mim(SDL_Window*& engine_window, SDL_Renderer*& engine_renderer) {
   printf("Initialization.\n");
@@ -81,6 +83,9 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
       // Handling mouse
       // MOUSE - pressing mouse button (left and right for now)
       if (event.type == SDL_MOUSEBUTTONDOWN) {
+        // Mouse button pressed
+        left_mouse_button_pressed = true;
+
         mouse_pointer.mouse_state = SDL_GetMouseState(&mouse_pointer.pos_x, &mouse_pointer.pos_y);
 
 #ifdef DEBUG_CODE_INPUT
@@ -94,13 +99,45 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
 #if 1
         Layout* selected_layout = select_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y);
         // DEBUG
-        printf("Selected layout: %p\n", selected_layout);
+        // printf("Selected layout: %p\n", selected_layout);
 
-        if (selected_layout != NULL) layout_click(*selected_layout, mouse_pointer.pos_x, mouse_pointer.pos_y);
+        if (selected_layout != NULL) {
+          layout_click(*selected_layout, mouse_pointer.pos_x, mouse_pointer.pos_y);
+          
+          if (selected_layout->is_sticked) {
+            // printf("We have a stick!\n");
+            sticked_ui_element = selected_layout;
+            printf("Selected_layout: %p\n", selected_layout);
+          }
+          else {
+            sticked_ui_element = NULL;
+          }
+        }
 
         Button* selected_button = select_button_from_layout(layout_vec, mouse_pointer.pos_x, mouse_pointer.pos_y); 
         if (selected_button != NULL) button_click(*selected_button);
 #endif
+      }
+
+      if (event.type == SDL_MOUSEMOTION) {
+        if (left_mouse_button_pressed) {
+          printf("Moving stuff around!\n");
+
+          // Layout layout = *(static_cast<Layout*>(sticked_ui_element));
+
+          // printf("selected_layout: %p\n", selected_layout);
+          printf("sticked_ui_element: %p\n", sticked_ui_element);
+          Layout* layout = (struct Layout*) sticked_ui_element;
+          printf("Pointer to layout: %p\n", &layout);
+          update_layout_position(layout, event.motion.xrel, event.motion.yrel);
+        }
+      }
+      
+      if (event.type == SDL_MOUSEBUTTONUP) {
+        left_mouse_button_pressed = false;
+        // sticked_ui_element->is_sticked = false;
+        sticked_ui_element = NULL;
+        // printf("Releasing mouse button!\n");
       }
       
       // Keyboard presses
@@ -108,8 +145,13 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
         if (event.key.keysym.sym == SDLK_ESCAPE) {
           running = false;
         }
+        if (event.key.keysym.sym == SDLK_q) {
+          running = false;
+        }
       }
     }
+
+    // End of event loop
 
     // Check mouse hovering @TODO should this be done in every frame? Use QuadTree for checking for UI elements
 #if 1
@@ -123,6 +165,18 @@ void run_mim(SDL_Renderer*& engine_renderer, bool& running) {
       if (worked_button->status != STATUS::CLICKED) worked_button->status = STATUS::UN_FOCUSED;
       worked_button = NULL;
     }
+#endif
+
+    // Check if mouse button is held and if there is a stickied element
+#if 1
+
+    if (left_mouse_button_pressed) {
+      if (sticked_ui_element != NULL) {
+        // printf("Something to move!\n");
+      }
+      // printf("Mouse button held!\n");
+    }
+
 #endif
 
     // Clearning the screen

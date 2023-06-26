@@ -116,6 +116,10 @@ void layout_click(Layout& layout, int& x, int& y) {
     // TODO: how should elements stick to mouse?
     // maybe it should be "global" there is always one mouse pointer
     // and only one element can "stick" to it...
+    layout.is_sticked = true;
+  }
+  else {
+    layout.is_sticked = false;
   }
 }
 
@@ -143,5 +147,27 @@ void make_top_bar_layout(SDL_Rect& layout_rect, SDL_Rect& top_bar_rect) {
   print_rect(layout_rect);
   print_rect(top_bar_rect);
 
+}
+
+
+void update_button_position(Button* to_update, int x_diff, int y_diff) {
+  (void) to_update;
+  (void) x_diff;
+  (void) y_diff;
+
+}
+
+void update_layout_position(Layout* to_update, int x_diff, int y_diff) {
+  to_update->top_bar.x += x_diff;
+  to_update->top_bar.y += y_diff;
+
+  to_update->background.x += x_diff;
+  to_update->background.y += y_diff;
+
+  // Update buttons
+  for (auto& but : to_update->buttons) {
+    but.rect.x += x_diff;
+    but.rect.y += y_diff;
+  }
 }
 

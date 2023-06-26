@@ -27,7 +27,7 @@ typedef struct Button {
   STATUS status;
 
   // Movable elements - can be dragged around
-  void (*update_movable_elements)();
+  // void update_movable_elements(int x, int y);
   SDL_Rect rect;
 
   // @TODO: colors based on status
@@ -53,11 +53,13 @@ typedef struct Layout {
   LAYOUT_TYPE layout_type;
 
   // Movable elements - can be dragged around
-  void (*update_movable_elements)();
+  // void update_movable_elements(int x, int y);
   SDL_Rect top_bar; // Kinda lighter - allows to drag around layouts
   SDL_Rect background;
 
   SDL_Color background_color; // It should have lower alpha value?
+
+  bool is_sticked;
 } Layout;
 
 typedef std::vector<Point2D> Point2D_Vec;
