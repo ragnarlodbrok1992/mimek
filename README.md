@@ -9,9 +9,10 @@ For now I have layout that holds buttons.
 
 ### TASKS
 
-1. Create label for buttons.
-2. Add more button to layout.
-3. Create a debug messages to display in engine.
+- [ ] Add text rendering
+- [ ] Create label for buttons.
+- [ ] Add more button to layout.
+- [ ] Create a debug messages to display in engine.
 
 ### TIPS
 

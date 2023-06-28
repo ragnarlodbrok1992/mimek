@@ -16,6 +16,7 @@ mimek: src/main.cpp
 			src/mimek/UIelements.cpp \
 			src/mimek/Utils.cpp \
 			src/mimek/Color.cpp \
+			src/mimek/Text.cpp \
 			src/mimek/mimek.cpp	\
 			src/main.cpp \
 			shell32.lib	\

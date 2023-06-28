@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Color.hpp"
+#include "Text.hpp"
 
 
 enum STATUS {
